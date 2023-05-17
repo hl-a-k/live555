@@ -1,0 +1,18 @@
+CROSS_COMPILE?=		/opt/fsl-imx-fb/4.14-sumo/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-
+COMPILE_OPTS =		$(INCLUDES)  -I. -O2 -DSOCKLEN_T=socklen_t -DNO_SSTREAM=1 -D_LARGEFILE_SOURCE=1 -D_FILE_OFFSET_BITS=64 -march=armv7-a -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9  -I ../../../third_party/src/library/openssl/openssl-1.1.1j/include --sysroot=/opt/fsl-imx-fb/4.14-sumo/sysroots/cortexa9hf-neon-poky-linux-gnueabi
+C =			c
+C_COMPILER =		$(CROSS_COMPILE)gcc
+C_FLAGS =		$(COMPILE_OPTS)
+CPP =			cpp
+CPLUSPLUS_COMPILER =	$(CROSS_COMPILE)g++
+CPLUSPLUS_FLAGS =	$(COMPILE_OPTS) -Wall -DBSD=1
+OBJ =			o
+LINK =			$(CROSS_COMPILE)g++ -march=armv7-a -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -L../../../third_party/src/library/openssl/openssl-1.1.1j --sysroot=/opt/fsl-imx-fb/4.14-sumo/sysroots/cortexa9hf-neon-poky-linux-gnueabi  -o 
+LINK_OPTS =		
+CONSOLE_LINK_OPTS =	$(LINK_OPTS)
+LIBRARY_LINK =		$(CROSS_COMPILE)ar cr 
+LIBRARY_LINK_OPTS =	$(LINK_OPTS)
+LIB_SUFFIX =			a
+LIBS_FOR_CONSOLE_APPLICATION = -lssl -lcrypto -lrt
+LIBS_FOR_GUI_APPLICATION =
+EXE =
